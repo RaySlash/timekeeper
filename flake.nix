@@ -30,6 +30,7 @@
             xorg.libXinerama
             xorg.libXcursor
             xorg.libXi
+            libxkbcommon
             stdenv.cc.libc_bin
             pkg-config
             clang
@@ -60,7 +61,7 @@
 
           mkDevShell = rust-toolchain:
             pkgs.mkShell {
-              NIX_LD_LIBRARY_PATH =
+              LD_LIBRARY_PATH =
                 "${pkgs.lib.makeLibraryPath buildDeps}:$LD_LIBRARY_PATH";
               packages = buildDeps ++ [ rust-toolchain ];
             };
